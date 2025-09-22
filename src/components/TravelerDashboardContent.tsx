@@ -41,7 +41,7 @@ interface Trip {
   type: 'spiritual' | 'tourist';
 }
 
-const PilgrimDashboardContent = () => {
+const TravelerDashboardContent = () => {
   const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'spiritual' | 'tourist'>('all');
@@ -88,7 +88,7 @@ const PilgrimDashboardContent = () => {
       rating: 4.9,
       price: '₹6,000',
       image: '🏛️',
-      description: 'Sacred Sikh pilgrimage site',
+      description: 'Sacred Sikh spiritual site',
       isFavorite: false
     }
   ]);
@@ -117,7 +117,7 @@ const PilgrimDashboardContent = () => {
                 Welcome, Traveler!
               </h1>
               <p className="text-muted-foreground mt-2 text-lg">
-                Discover amazing spiritual destinations and memorable adventures, {user?.user_metadata?.display_name || 'Pilgrim'}
+                Discover amazing spiritual destinations and memorable adventures, {user?.user_metadata?.display_name || 'Traveler'}
               </p>
             </div>
             <div className="flex items-center gap-3">
@@ -372,4 +372,4 @@ const PilgrimDashboardContent = () => {
   );
 };
 
-export default PilgrimDashboardContent;
+export default TravelerDashboardContent;

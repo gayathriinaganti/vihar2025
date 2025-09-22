@@ -64,51 +64,6 @@ export type Database = {
           },
         ]
       }
-      pilgrimage_requests: {
-        Row: {
-          accommodation: string
-          budget: string
-          created_at: string
-          destination: string
-          duration: string
-          group_size: string
-          id: string
-          journey_date: string | null
-          special_requirements: string | null
-          status: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          accommodation: string
-          budget: string
-          created_at?: string
-          destination: string
-          duration: string
-          group_size: string
-          id?: string
-          journey_date?: string | null
-          special_requirements?: string | null
-          status?: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          accommodation?: string
-          budget?: string
-          created_at?: string
-          destination?: string
-          duration?: string
-          group_size?: string
-          id?: string
-          journey_date?: string | null
-          special_requirements?: string | null
-          status?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -199,6 +154,51 @@ export type Database = {
           user_id?: string | null
           verification_status?: string | null
           website_url?: string | null
+        }
+        Relationships: []
+      }
+      travel_requests: {
+        Row: {
+          accommodation: string
+          budget: string
+          created_at: string
+          destination: string
+          duration: string
+          group_size: string
+          id: string
+          journey_date: string | null
+          special_requirements: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          accommodation: string
+          budget: string
+          created_at?: string
+          destination: string
+          duration: string
+          group_size: string
+          id?: string
+          journey_date?: string | null
+          special_requirements?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          accommodation?: string
+          budget?: string
+          created_at?: string
+          destination?: string
+          duration?: string
+          group_size?: string
+          id?: string
+          journey_date?: string | null
+          special_requirements?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }

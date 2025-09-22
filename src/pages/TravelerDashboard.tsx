@@ -1,9 +1,9 @@
-import { PilgrimDashboard as PilgrimDashboardComponent } from "@/components/DashboardPreview";
-import PilgrimDashboardContent from "@/components/PilgrimDashboardContent";
+import { TravelerDashboard as TravelerDashboardComponent } from "@/components/DashboardPreview";
+import TravelerDashboardContent from "@/components/TravelerDashboardContent";
 import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router-dom";
 
-const PilgrimDashboard = () => {
+const TravelerDashboard = () => {
   const { user, loading } = useAuth();
 
   if (loading) {
@@ -18,7 +18,7 @@ const PilgrimDashboard = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <PilgrimDashboardContent />;
+  return <TravelerDashboardContent />;
 };
 
-export default PilgrimDashboard;
+export default TravelerDashboard;

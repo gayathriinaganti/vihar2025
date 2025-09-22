@@ -14,7 +14,7 @@ interface AuthModalProps {
 }
 
 const AuthModal = ({ children }: AuthModalProps) => {
-  const [userRole, setUserRole] = useState<"provider" | "pilgrim">("pilgrim");
+  const [userRole, setUserRole] = useState<"provider" | "traveler">("traveler");
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"signup" | "login">("signup");
   
@@ -106,7 +106,7 @@ const AuthModal = ({ children }: AuthModalProps) => {
                   <Label className="text-sm font-medium">I want to join as:</Label>
                   <RadioGroup
                     value={userRole}
-                    onValueChange={(value: "provider" | "pilgrim") => setUserRole(value)}
+                    onValueChange={(value: "provider" | "traveler") => setUserRole(value)}
                     className="grid grid-cols-2 gap-4"
                   >
                     <div className="flex items-center space-x-2">
@@ -117,10 +117,10 @@ const AuthModal = ({ children }: AuthModalProps) => {
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="pilgrim" id="pilgrim" />
-                      <Label htmlFor="pilgrim" className="flex items-center gap-2 cursor-pointer">
+                      <RadioGroupItem value="traveler" id="traveler" />
+                      <Label htmlFor="traveler" className="flex items-center gap-2 cursor-pointer">
                         <User className="w-4 h-4 text-primary" />
-                        Pilgrim
+                        Traveler
                       </Label>
                     </div>
                   </RadioGroup>
@@ -185,7 +185,7 @@ const AuthModal = ({ children }: AuthModalProps) => {
                     size="lg"
                     disabled={loading}
                   >
-                    {loading ? "Creating Account..." : `Create ${userRole === "provider" ? "Provider" : "Pilgrim"} Account`}
+                    {loading ? "Creating Account..." : `Create ${userRole === "provider" ? "Provider" : "Traveler"} Account`}
                   </Button>
                 </form>
               </CardContent>

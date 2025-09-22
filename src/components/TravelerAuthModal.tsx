@@ -9,11 +9,11 @@ import { UserPlus, LogIn, User, Heart } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
-interface PilgrimAuthModalProps {
+interface TravelerAuthModalProps {
   children: React.ReactNode;
 }
 
-const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
+const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"signup" | "login">("signup");
   
@@ -45,13 +45,13 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
     const { error } = await signUp(signupData.email, signupData.password, {
       display_name: signupData.fullName,
       phone: signupData.phone,
-      user_role: "pilgrim"
+      user_role: "traveler"
     });
     
     if (!error) {
       setIsOpen(false);
       setSignupData({ fullName: "", email: "", phone: "", password: "", confirmPassword: "" });
-      navigate('/pilgrim-dashboard');
+      navigate('/traveler-dashboard');
     }
   };
   
@@ -63,7 +63,7 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
     if (!error) {
       setIsOpen(false);
       setLoginData({ email: "", password: "" });
-      navigate('/pilgrim-dashboard');
+      navigate('/traveler-dashboard');
     }
   };
 
@@ -87,11 +87,11 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
           <TabsList className="grid w-full grid-cols-2 rounded-none">
             <TabsTrigger value="signup" className="flex items-center gap-2">
               <UserPlus className="w-4 h-4" />
-              Join as Pilgrim
+              Join as Traveler
             </TabsTrigger>
             <TabsTrigger value="login" className="flex items-center gap-2">
               <LogIn className="w-4 h-4" />
-              Pilgrim Login
+              Traveler Login
             </TabsTrigger>
           </TabsList>
 
@@ -109,9 +109,9 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
               <CardContent className="space-y-4 p-6">
                 <form onSubmit={handleSignup} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="pilgrimFullName">Full Name *</Label>
+                    <Label htmlFor="travelerFullName">Full Name *</Label>
                     <Input 
-                      id="pilgrimFullName" 
+                      id="travelerFullName"
                       placeholder="Enter your full name"
                       value={signupData.fullName}
                       onChange={(e) => setSignupData({...signupData, fullName: e.target.value})}
@@ -119,9 +119,9 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="pilgrimEmail">Email Address *</Label>
+                    <Label htmlFor="travelerEmail">Email Address *</Label>
                     <Input 
-                      id="pilgrimEmail" 
+                      id="travelerEmail"
                       type="email" 
                       placeholder="your.email@example.com"
                       value={signupData.email}
@@ -130,9 +130,9 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="pilgrimPhone">Phone Number</Label>
+                    <Label htmlFor="travelerPhone">Phone Number</Label>
                     <Input 
-                      id="pilgrimPhone" 
+                      id="travelerPhone"
                       type="tel" 
                       placeholder="+91 98765 43210"
                       value={signupData.phone}
@@ -140,9 +140,9 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="pilgrimPassword">Password *</Label>
+                    <Label htmlFor="travelerPassword">Password *</Label>
                     <Input 
-                      id="pilgrimPassword" 
+                      id="travelerPassword"
                       type="password" 
                       placeholder="Create a secure password"
                       value={signupData.password}
@@ -151,9 +151,9 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="pilgrimConfirmPassword">Confirm Password *</Label>
+                    <Label htmlFor="travelerConfirmPassword">Confirm Password *</Label>
                     <Input 
-                      id="pilgrimConfirmPassword" 
+                      id="travelerConfirmPassword"
                       type="password" 
                       placeholder="Confirm your password"
                       value={signupData.confirmPassword}
@@ -164,7 +164,7 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
                   
                   <div className="bg-spiritual/10 p-4 rounded-lg border border-spiritual/20">
                     <p className="text-xs text-muted-foreground">
-                      <strong>🕉️ Pilgrim Benefits:</strong> Discover sacred temples, book authentic experiences, 
+                      <strong>🕉️ Traveler Benefits:</strong> Discover sacred temples, book authentic experiences, 
                       connect with verified guides, and create meaningful spiritual journeys.
                     </p>
                   </div>
@@ -176,7 +176,7 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
                     size="lg"
                     disabled={loading}
                   >
-                    {loading ? "Creating Pilgrim Account..." : "Start Your Journey"}
+                    {loading ? "Creating Traveler Account..." : "Start Your Journey"}
                   </Button>
                 </form>
               </CardContent>
@@ -188,7 +188,7 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
               <CardHeader className="space-y-1 pb-4 bg-gradient-to-r from-spiritual/5 to-primary/5">
                 <CardTitle className="text-2xl text-center flex items-center justify-center gap-2">
                   <User className="w-6 h-6 text-spiritual" />
-                  Welcome Back, Pilgrim
+                  Welcome Back, Traveler
                 </CardTitle>
                 <CardDescription className="text-center">
                   Continue your spiritual journey and discover new destinations
@@ -197,9 +197,9 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
               <CardContent className="space-y-4 p-6">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="pilgrimLoginEmail">Email Address</Label>
+                    <Label htmlFor="travelerLoginEmail">Email Address</Label>
                     <Input 
-                      id="pilgrimLoginEmail" 
+                      id="travelerLoginEmail"
                       type="email" 
                       placeholder="Enter your email"
                       value={loginData.email}
@@ -208,9 +208,9 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="pilgrimLoginPassword">Password</Label>
+                    <Label htmlFor="travelerLoginPassword">Password</Label>
                     <Input 
-                      id="pilgrimLoginPassword" 
+                      id="travelerLoginPassword"
                       type="password" 
                       placeholder="Enter your password"
                       value={loginData.password}
@@ -242,4 +242,4 @@ const PilgrimAuthModal = ({ children }: PilgrimAuthModalProps) => {
   );
 };
 
-export default PilgrimAuthModal;
+export default TravelerAuthModal;

@@ -38,7 +38,7 @@ const About = () => {
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                 We believe that every spiritual journey and adventure should be accessible, authentic, and transformative. 
-                Vihar was born from the vision of making sacred travel and exploration seamless for pilgrims and adventurers alike.
+                Vihar was born from the vision of making sacred travel and exploration seamless for travelers and adventurers alike.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -165,7 +165,7 @@ const About = () => {
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-spiritual mb-2">5000+</div>
-              <div className="text-sm text-muted-foreground">Happy Pilgrims</div>
+              <div className="text-sm text-muted-foreground">Happy Travelers</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-accent mb-2">25+</div>

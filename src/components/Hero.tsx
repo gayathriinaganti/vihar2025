@@ -5,7 +5,7 @@ import heroImage from "@/assets/hero-temple.jpg";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import ProviderAuthModal from "./ProviderAuthModal";
-import PilgrimAuthModal from "./PilgrimAuthModal";
+import TravelerAuthModal from "./TravelerAuthModal";
 
 const Hero = () => {
   const { user } = useAuth();
@@ -17,9 +17,9 @@ const Hero = () => {
     }
   };
 
-  const handlePilgrimClick = () => {
+  const handleTravelerClick = () => {
     if (user) {
-      navigate('/pilgrim-dashboard');
+      navigate('/traveler-dashboard');
     }
   };
   return (
@@ -39,7 +39,7 @@ const Hero = () => {
             Your Journey Starts Here
           </h1>
           <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
-            Connect with trusted providers for spiritual pilgrimages and memorable travels. 
+            Connect with trusted providers for spiritual journeys and memorable travels. 
             Whether you seek temple visits, tour guides, accommodation, or local experiences, 
             we bring everything together in one platform.
           </p>
@@ -50,8 +50,8 @@ const Hero = () => {
                 <Button variant="hero" size="xl" className="shadow-2xl" onClick={handleProviderClick}>
                   Go to Provider Dashboard
                 </Button>
-                <Button variant="spiritual" size="xl" className="shadow-2xl" onClick={handlePilgrimClick}>
-                  Go to Pilgrim Dashboard
+                <Button variant="spiritual" size="xl" className="shadow-2xl" onClick={handleTravelerClick}>
+                  Go to Traveler Dashboard
                 </Button>
               </>
             ) : (
@@ -61,18 +61,18 @@ const Hero = () => {
                     Join as Provider
                   </Button>
                 </ProviderAuthModal>
-                <PilgrimAuthModal>
+                <TravelerAuthModal>
                   <Button variant="spiritual" size="xl" className="shadow-2xl">
-                    Explore as Pilgrim
+                    Explore as Traveler
                   </Button>
-                </PilgrimAuthModal>
+                </TravelerAuthModal>
                 <div className="flex items-center gap-4 mt-4">
                   <span className="text-white/80 text-sm">Already have an account?</span>
-                  <PilgrimAuthModal>
+                  <TravelerAuthModal>
                     <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
-                      Pilgrim Login
+                      Traveler Login
                     </Button>
-                  </PilgrimAuthModal>
+                  </TravelerAuthModal>
                   <ProviderAuthModal>
                     <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
                       Provider Login

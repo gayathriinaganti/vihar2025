@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Compass } from "lucide-react";
-import PilgrimAuthModal from "@/components/PilgrimAuthModal";
+import TravelerAuthModal from "@/components/TravelerAuthModal";
 import ProviderAuthModal from "@/components/ProviderAuthModal";
 import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router-dom";
@@ -51,41 +51,41 @@ const AuthPage = () => {
 
           {/* Auth Card */}
           <Card className="bg-white/10 backdrop-blur-md border-white/20 shadow-glow">
-            <Tabs defaultValue="pilgrim" className="p-6">
+            <Tabs defaultValue="traveler" className="p-6">
               <TabsList className="grid w-full grid-cols-2 bg-white/10">
-                <TabsTrigger value="pilgrim" className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">
-                  Pilgrim
+                <TabsTrigger value="traveler" className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">
+                  Traveler
                 </TabsTrigger>
                 <TabsTrigger value="provider" className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">
                   Provider
                 </TabsTrigger>
               </TabsList>
               
-              <TabsContent value="pilgrim" className="mt-6 space-y-4">
+              <TabsContent value="traveler" className="mt-6 space-y-4">
                 <div className="text-center mb-6">
-                  <h2 className="text-2xl font-semibold text-white mb-2">Welcome Pilgrim</h2>
+                  <h2 className="text-2xl font-semibold text-white mb-2">Welcome Traveler</h2>
                   <p className="text-white/80 text-sm">Discover spiritual journeys and trusted providers</p>
                 </div>
                 
                 <div className="space-y-3">
-                  <PilgrimAuthModal>
+                  <TravelerAuthModal>
                     <Button variant="hero" size="lg" className="w-full shadow-xl">
-                      Pilgrim Login
+                      Traveler Login
                     </Button>
-                  </PilgrimAuthModal>
+                  </TravelerAuthModal>
                   
-                  <PilgrimAuthModal>
+                  <TravelerAuthModal>
                     <Button variant="outline" size="lg" className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20">
-                      Create Pilgrim Account
+                      Create Traveler Account
                     </Button>
-                  </PilgrimAuthModal>
+                  </TravelerAuthModal>
                 </div>
               </TabsContent>
               
               <TabsContent value="provider" className="mt-6 space-y-4">
                 <div className="text-center mb-6">
                   <h2 className="text-2xl font-semibold text-white mb-2">Welcome Provider</h2>
-                  <p className="text-white/80 text-sm">Join our platform and serve pilgrims</p>
+                  <p className="text-white/80 text-sm">Join our platform and serve travelers</p>
                 </div>
                 
                 <div className="space-y-3">
