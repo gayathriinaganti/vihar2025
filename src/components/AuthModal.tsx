@@ -16,6 +16,7 @@ interface AuthModalProps {
 const AuthModal = ({ children }: AuthModalProps) => {
   const [userRole, setUserRole] = useState<"provider" | "pilgrim">("pilgrim");
   const [isOpen, setIsOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<"signup" | "login">("signup");
   
   // Signup form state
   const [signupData, setSignupData] = useState({
@@ -64,11 +65,22 @@ const AuthModal = ({ children }: AuthModalProps) => {
   
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger 
+        asChild 
+        onClick={() => {
+          // Check button text to determine which tab to show
+          const buttonText = (children as any)?.props?.children;
+          if (typeof buttonText === 'string' && buttonText.toLowerCase().includes('login')) {
+            setActiveTab("login");
+          } else {
+            setActiveTab("signup");
+          }
+        }}
+      >
         {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px] p-0">
-        <Tabs defaultValue="signup" className="w-full">
+        <Tabs value={activeTab} onValueChange={(value: "signup" | "login") => setActiveTab(value)} className="w-full">
           <TabsList className="grid w-full grid-cols-2 rounded-none">
             <TabsTrigger value="signup" className="flex items-center gap-2">
               <UserPlus className="w-4 h-4" />

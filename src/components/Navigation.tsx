@@ -44,11 +44,18 @@ const Navigation = () => {
                 </Button>
               </div>
             ) : (
-              <AuthModal>
-                <Button variant="outline" size="sm">
-                  Get Started
-                </Button>
-              </AuthModal>
+              <div className="flex items-center gap-2">
+                <AuthModal>
+                  <Button variant="ghost" size="sm">
+                    Login
+                  </Button>
+                </AuthModal>
+                <AuthModal>
+                  <Button variant="outline" size="sm">
+                    Register
+                  </Button>
+                </AuthModal>
+              </div>
             )}
           </div>
 
@@ -96,11 +103,18 @@ const Navigation = () => {
                     Sign Out
                   </Button>
                 ) : (
-                  <AuthModal>
-                    <Button variant="outline" size="sm" className="w-full">
-                      Get Started
-                    </Button>
-                  </AuthModal>
+                  <div className="space-y-2">
+                    <AuthModal>
+                      <Button variant="ghost" size="sm" className="w-full">
+                        Login
+                      </Button>
+                    </AuthModal>
+                    <AuthModal>
+                      <Button variant="outline" size="sm" className="w-full">
+                        Register
+                      </Button>
+                    </AuthModal>
+                  </div>
                 )}
               </div>
             </div>

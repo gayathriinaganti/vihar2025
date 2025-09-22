@@ -65,6 +65,14 @@ const Hero = () => {
                     Explore as Pilgrim
                   </Button>
                 </AuthModal>
+                <div className="flex items-center gap-4 mt-4">
+                  <span className="text-white/80 text-sm">Already have an account?</span>
+                  <AuthModal>
+                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+                      Login Here
+                    </Button>
+                  </AuthModal>
+                </div>
               </>
             )}
           </div>
