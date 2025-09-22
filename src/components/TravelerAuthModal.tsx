@@ -108,7 +108,7 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
       >
         {children}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] p-0">
+      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto p-0">
         <Tabs value={activeTab} onValueChange={(value: "signup" | "login") => setActiveTab(value)} className="w-full">
           <TabsList className="grid w-full grid-cols-2 rounded-none">
             <TabsTrigger value="signup" className="flex items-center gap-2">
@@ -188,7 +188,7 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
                     />
                   </div>
                   
-                  <div className="bg-spiritual/10 p-4 rounded-lg border border-spiritual/20">
+                  <div className="bg-spiritual/10 p-4 rounded-lg border border-spiritual/20 mb-4">
                     <p className="text-xs text-muted-foreground">
                       <strong>🕉️ Traveler Benefits:</strong> Discover sacred temples, book authentic experiences, 
                       connect with verified guides, and create meaningful spiritual journeys.
@@ -197,7 +197,7 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
 
                   <Button 
                     type="submit"
-                    className="w-full" 
+                    className="w-full mt-6 mb-4" 
                     variant="spiritual"
                     size="lg"
                     disabled={loading}
