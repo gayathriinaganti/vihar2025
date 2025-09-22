@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { UserPlus, LogIn, User, Building } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 interface AuthModalProps {
   children: React.ReactNode;
@@ -14,9 +15,55 @@ interface AuthModalProps {
 
 const AuthModal = ({ children }: AuthModalProps) => {
   const [userRole, setUserRole] = useState<"provider" | "pilgrim">("pilgrim");
+  const [isOpen, setIsOpen] = useState(false);
+  
+  // Signup form state
+  const [signupData, setSignupData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+  
+  // Login form state  
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: ""
+  });
+  
+  const { signUp, signIn, loading } = useAuth();
+  
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (signupData.password !== signupData.confirmPassword) {
+      return;
+    }
+    
+    const { error } = await signUp(signupData.email, signupData.password, {
+      display_name: signupData.username,
+      user_role: userRole
+    });
+    
+    if (!error) {
+      setIsOpen(false);
+      setSignupData({ username: "", email: "", password: "", confirmPassword: "" });
+    }
+  };
+  
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const { error } = await signIn(loginData.email, loginData.password);
+    
+    if (!error) {
+      setIsOpen(false);
+      setLoginData({ email: "", password: "" });
+    }
+  };
   
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
@@ -74,32 +121,61 @@ const AuthModal = ({ children }: AuthModalProps) => {
                 </div>
 
                 {/* Form Fields */}
-                <div className="space-y-4">
+                <form onSubmit={handleSignup} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="username">Username</Label>
-                    <Input id="username" placeholder="Enter your username" />
+                    <Input 
+                      id="username" 
+                      placeholder="Enter your username"
+                      value={signupData.username}
+                      onChange={(e) => setSignupData({...signupData, username: e.target.value})}
+                      required
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="Enter your email" />
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="Enter your email"
+                      value={signupData.email}
+                      onChange={(e) => setSignupData({...signupData, email: e.target.value})}
+                      required
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="password">Password</Label>
-                    <Input id="password" type="password" placeholder="Create a password" />
+                    <Input 
+                      id="password" 
+                      type="password" 
+                      placeholder="Create a password"
+                      value={signupData.password}
+                      onChange={(e) => setSignupData({...signupData, password: e.target.value})}
+                      required
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="confirmPassword">Confirm Password</Label>
-                    <Input id="confirmPassword" type="password" placeholder="Confirm your password" />
+                    <Input 
+                      id="confirmPassword" 
+                      type="password" 
+                      placeholder="Confirm your password"
+                      value={signupData.confirmPassword}
+                      onChange={(e) => setSignupData({...signupData, confirmPassword: e.target.value})}
+                      required
+                    />
                   </div>
-                </div>
 
-                <Button 
-                  className="w-full" 
-                  variant={userRole === "provider" ? "hero" : "spiritual"}
-                  size="lg"
-                >
-                  Create {userRole === "provider" ? "Provider" : "Pilgrim"} Account
-                </Button>
+                  <Button 
+                    type="submit"
+                    className="w-full" 
+                    variant={userRole === "provider" ? "hero" : "spiritual"}
+                    size="lg"
+                    disabled={loading}
+                  >
+                    {loading ? "Creating Account..." : `Create ${userRole === "provider" ? "Provider" : "Pilgrim"} Account`}
+                  </Button>
+                </form>
               </CardContent>
             </Card>
           </TabsContent>
@@ -113,20 +189,39 @@ const AuthModal = ({ children }: AuthModalProps) => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-4">
+                <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="loginEmail">Email</Label>
-                    <Input id="loginEmail" type="email" placeholder="Enter your email" />
+                    <Input 
+                      id="loginEmail" 
+                      type="email" 
+                      placeholder="Enter your email"
+                      value={loginData.email}
+                      onChange={(e) => setLoginData({...loginData, email: e.target.value})}
+                      required
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="loginPassword">Password</Label>
-                    <Input id="loginPassword" type="password" placeholder="Enter your password" />
+                    <Input 
+                      id="loginPassword" 
+                      type="password" 
+                      placeholder="Enter your password"
+                      value={loginData.password}
+                      onChange={(e) => setLoginData({...loginData, password: e.target.value})}
+                      required
+                    />
                   </div>
-                </div>
 
-                <Button className="w-full" size="lg">
-                  Sign In
-                </Button>
+                  <Button 
+                    type="submit"
+                    className="w-full" 
+                    size="lg"
+                    disabled={loading}
+                  >
+                    {loading ? "Signing In..." : "Sign In"}
+                  </Button>
+                </form>
                 
                 <p className="text-center text-sm text-muted-foreground">
                   Don't have an account? Switch to Sign Up tab

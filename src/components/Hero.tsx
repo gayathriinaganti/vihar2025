@@ -2,8 +2,25 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MapPin, Users, Shield, Star } from "lucide-react";
 import heroImage from "@/assets/hero-temple.jpg";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import AuthModal from "./AuthModal";
 
 const Hero = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleProviderClick = () => {
+    if (user) {
+      navigate('/provider-dashboard');
+    }
+  };
+
+  const handlePilgrimClick = () => {
+    if (user) {
+      navigate('/pilgrim-dashboard');
+    }
+  };
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background with overlay */}
@@ -27,12 +44,29 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button variant="hero" size="xl" className="shadow-2xl">
-              Join as Provider
-            </Button>
-            <Button variant="spiritual" size="xl" className="shadow-2xl">
-              Explore as Pilgrim
-            </Button>
+            {user ? (
+              <>
+                <Button variant="hero" size="xl" className="shadow-2xl" onClick={handleProviderClick}>
+                  Go to Provider Dashboard
+                </Button>
+                <Button variant="spiritual" size="xl" className="shadow-2xl" onClick={handlePilgrimClick}>
+                  Go to Pilgrim Dashboard
+                </Button>
+              </>
+            ) : (
+              <>
+                <AuthModal>
+                  <Button variant="hero" size="xl" className="shadow-2xl">
+                    Join as Provider
+                  </Button>
+                </AuthModal>
+                <AuthModal>
+                  <Button variant="spiritual" size="xl" className="shadow-2xl">
+                    Explore as Pilgrim
+                  </Button>
+                </AuthModal>
+              </>
+            )}
           </div>
         </div>
 

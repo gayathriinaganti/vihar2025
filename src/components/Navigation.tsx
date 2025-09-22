@@ -1,10 +1,14 @@
 import { Button } from "@/components/ui/button";
 import AuthModal from "./AuthModal";
-import { Menu, X, Compass } from "lucide-react";
+import { Menu, X, Compass, LogOut } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-lg border-b border-border z-50">
@@ -29,11 +33,23 @@ const Navigation = () => {
             <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
               Contact
             </a>
-            <AuthModal>
-              <Button variant="outline" size="sm">
-                Get Started
-              </Button>
-            </AuthModal>
+            {user ? (
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-muted-foreground">
+                  Welcome, {user.user_metadata?.display_name || user.email}
+                </span>
+                <Button variant="outline" size="sm" onClick={signOut}>
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <AuthModal>
+                <Button variant="outline" size="sm">
+                  Get Started
+                </Button>
+              </AuthModal>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -74,11 +90,18 @@ const Navigation = () => {
                 Contact
               </a>
               <div className="pt-2">
-                <AuthModal>
-                  <Button variant="outline" size="sm" className="w-full">
-                    Get Started
+                {user ? (
+                  <Button variant="outline" size="sm" className="w-full" onClick={signOut}>
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
                   </Button>
-                </AuthModal>
+                ) : (
+                  <AuthModal>
+                    <Button variant="outline" size="sm" className="w-full">
+                      Get Started
+                    </Button>
+                  </AuthModal>
+                )}
               </div>
             </div>
           </div>
