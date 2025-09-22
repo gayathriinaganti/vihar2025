@@ -4,7 +4,8 @@ import { MapPin, Users, Shield, Star } from "lucide-react";
 import heroImage from "@/assets/hero-temple.jpg";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import AuthModal from "./AuthModal";
+import ProviderAuthModal from "./ProviderAuthModal";
+import PilgrimAuthModal from "./PilgrimAuthModal";
 
 const Hero = () => {
   const { user } = useAuth();
@@ -55,23 +56,28 @@ const Hero = () => {
               </>
             ) : (
               <>
-                <AuthModal>
+                <ProviderAuthModal>
                   <Button variant="hero" size="xl" className="shadow-2xl">
                     Join as Provider
                   </Button>
-                </AuthModal>
-                <AuthModal>
+                </ProviderAuthModal>
+                <PilgrimAuthModal>
                   <Button variant="spiritual" size="xl" className="shadow-2xl">
                     Explore as Pilgrim
                   </Button>
-                </AuthModal>
+                </PilgrimAuthModal>
                 <div className="flex items-center gap-4 mt-4">
                   <span className="text-white/80 text-sm">Already have an account?</span>
-                  <AuthModal>
+                  <PilgrimAuthModal>
                     <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
-                      Login Here
+                      Pilgrim Login
                     </Button>
-                  </AuthModal>
+                  </PilgrimAuthModal>
+                  <ProviderAuthModal>
+                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+                      Provider Login
+                    </Button>
+                  </ProviderAuthModal>
                 </div>
               </>
             )}

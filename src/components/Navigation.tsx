@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import AuthModal from "./AuthModal";
+import ProviderAuthModal from "./ProviderAuthModal";
+import PilgrimAuthModal from "./PilgrimAuthModal";
 import { Menu, X, Compass, LogOut } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
@@ -45,16 +47,16 @@ const Navigation = () => {
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <AuthModal>
+                <PilgrimAuthModal>
                   <Button variant="ghost" size="sm">
-                    Login
+                    Pilgrim Login
                   </Button>
-                </AuthModal>
-                <AuthModal>
+                </PilgrimAuthModal>
+                <ProviderAuthModal>
                   <Button variant="outline" size="sm">
-                    Register
+                    Provider Login
                   </Button>
-                </AuthModal>
+                </ProviderAuthModal>
               </div>
             )}
           </div>
@@ -104,16 +106,16 @@ const Navigation = () => {
                   </Button>
                 ) : (
                   <div className="space-y-2">
-                    <AuthModal>
+                    <PilgrimAuthModal>
                       <Button variant="ghost" size="sm" className="w-full">
-                        Login
+                        Pilgrim Login
                       </Button>
-                    </AuthModal>
-                    <AuthModal>
+                    </PilgrimAuthModal>
+                    <ProviderAuthModal>
                       <Button variant="outline" size="sm" className="w-full">
-                        Register
+                        Provider Login
                       </Button>
-                    </AuthModal>
+                    </ProviderAuthModal>
                   </div>
                 )}
               </div>
