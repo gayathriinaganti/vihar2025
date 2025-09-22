@@ -27,10 +27,10 @@ const Navigation = () => {
             <a href="#services" className="text-muted-foreground hover:text-foreground transition-colors">
               Services
             </a>
-            <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
               About
             </a>
-            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
               Contact
             </a>
             {user ? (
@@ -76,14 +76,14 @@ const Navigation = () => {
                 Services
               </a>
               <a
-                href="#about"
+                href="/about"
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 About
               </a>
               <a
-                href="#contact"
+                href="/contact"
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setIsOpen(false)}
               >
