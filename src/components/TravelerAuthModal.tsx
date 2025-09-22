@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { UserPlus, LogIn, User, Heart } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 interface TravelerAuthModalProps {
   children: React.ReactNode;
@@ -34,11 +35,26 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
   
   const { signUp, signIn, loading } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
   
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (signupData.password !== signupData.confirmPassword) {
+      toast({
+        variant: "destructive",
+        title: "Password Mismatch",
+        description: "Please make sure both passwords match.",
+      });
+      return;
+    }
+
+    if (signupData.password.length < 6) {
+      toast({
+        variant: "destructive", 
+        title: "Password Too Short",
+        description: "Password must be at least 6 characters long.",
+      });
       return;
     }
     
@@ -51,7 +67,17 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
     if (!error) {
       setIsOpen(false);
       setSignupData({ fullName: "", email: "", phone: "", password: "", confirmPassword: "" });
+      toast({
+        title: "Account Created!",
+        description: "Welcome to Vihar! Your traveler account has been created successfully.",
+      });
       navigate('/traveler-dashboard');
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Registration Failed",
+        description: error.message || "Something went wrong. Please try again.",
+      });
     }
   };
   
