@@ -15,7 +15,7 @@ const Navigation = () => {
             <div className="p-2 bg-gradient-primary rounded-lg">
               <Compass className="w-6 h-6 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold text-foreground">TravelSeva</span>
+            <span className="text-xl font-bold text-foreground">Vihar</span>
           </div>
 
           {/* Desktop Menu */}

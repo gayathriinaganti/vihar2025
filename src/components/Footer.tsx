@@ -12,7 +12,7 @@ const Footer = () => {
               <div className="p-2 bg-gradient-primary rounded-lg">
                 <Compass className="w-5 h-5 text-primary-foreground" />
               </div>
-              <span className="text-lg font-bold text-foreground">TravelSeva</span>
+              <span className="text-lg font-bold text-foreground">Vihar</span>
             </div>
             <p className="text-muted-foreground text-sm">
               Connecting travelers with trusted service providers for spiritual journeys and memorable adventures across India.
@@ -60,7 +60,7 @@ const Footer = () => {
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="w-4 h-4" />
-                <span>hello@travelseva.com</span>
+                <span>hello@vihar.com</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="w-4 h-4" />
@@ -76,7 +76,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © 2024 TravelSeva. All rights reserved.
+            © 2024 Vihar. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm">
             Made with ❤️ for travelers and spiritual seekers
