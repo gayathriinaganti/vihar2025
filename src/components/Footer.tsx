@@ -76,7 +76,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © 2024 Vihar. All rights reserved.
+            © 2025 Vihar. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm">
             Made with ❤️ for travelers and spiritual seekers
