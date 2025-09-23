@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
   Plus, 
   Eye, 
@@ -249,102 +250,104 @@ const ProviderDashboardContent = () => {
                     Add Service
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
+                <DialogContent className="sm:max-w-md max-h-[80vh]">
                   <DialogHeader>
                     <DialogTitle>Add New Service</DialogTitle>
                   </DialogHeader>
-                  <form onSubmit={handleAddService} className="space-y-4">
-                    <div>
-                      <Label htmlFor="serviceName">Service Name</Label>
-                      <Input
-                        id="serviceName"
-                        value={newService.name}
-                        onChange={(e) => setNewService({...newService, name: e.target.value})}
-                        placeholder="e.g., Temple Guide - Tirupati"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="serviceType">Service Type</Label>
-                      <Select 
-                        value={newService.service_type}
-                        onValueChange={(value) => setNewService({...newService, service_type: value})}
-                        required
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select service type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Spiritual">Spiritual Guide</SelectItem>
-                          <SelectItem value="Pilgrimage">Pilgrimage Package</SelectItem>
-                          <SelectItem value="Wellness">Wellness & Yoga</SelectItem>
-                          <SelectItem value="Transport">Transportation</SelectItem>
-                          <SelectItem value="Accommodation">Accommodation</SelectItem>
-                          <SelectItem value="Cultural">Cultural Tour</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="serviceLocation">Location</Label>
-                      <Input
-                        id="serviceLocation"
-                        value={newService.location}
-                        onChange={(e) => setNewService({...newService, location: e.target.value})}
-                        placeholder="e.g., Tirupati, Andhra Pradesh"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="serviceState">State</Label>
-                      <Select 
-                        value={newService.state}
-                        onValueChange={(value) => setNewService({...newService, state: value})}
-                        required
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select state" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
-                          <SelectItem value="Karnataka">Karnataka</SelectItem>
-                          <SelectItem value="Kerala">Kerala</SelectItem>
-                          <SelectItem value="Tamil Nadu">Tamil Nadu</SelectItem>
-                          <SelectItem value="Maharashtra">Maharashtra</SelectItem>
-                          <SelectItem value="Gujarat">Gujarat</SelectItem>
-                          <SelectItem value="Rajasthan">Rajasthan</SelectItem>
-                          <SelectItem value="Uttar Pradesh">Uttar Pradesh</SelectItem>
-                          <SelectItem value="Uttarakhand">Uttarakhand</SelectItem>
-                          <SelectItem value="Himachal Pradesh">Himachal Pradesh</SelectItem>
-                          <SelectItem value="Delhi">Delhi</SelectItem>
-                          <SelectItem value="West Bengal">West Bengal</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="servicePrice">Price per Day (₹)</Label>
-                      <Input
-                        id="servicePrice"
-                        type="number"
-                        value={newService.price_per_day}
-                        onChange={(e) => setNewService({...newService, price_per_day: e.target.value})}
-                        placeholder="e.g., 500"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="serviceDescription">Description</Label>
-                      <Textarea
-                        id="serviceDescription"
-                        value={newService.description}
-                        onChange={(e) => setNewService({...newService, description: e.target.value})}
-                        placeholder="Describe your service in detail..."
-                        rows={3}
-                      />
-                    </div>
-                    <Button type="submit" className="w-full">
-                      Add Service
-                    </Button>
-                  </form>
+                  <ScrollArea className="max-h-[60vh] pr-4">
+                    <form onSubmit={handleAddService} className="space-y-4">
+                      <div>
+                        <Label htmlFor="serviceName">Service Name</Label>
+                        <Input
+                          id="serviceName"
+                          value={newService.name}
+                          onChange={(e) => setNewService({...newService, name: e.target.value})}
+                          placeholder="e.g., Temple Guide - Tirupati"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="serviceType">Service Type</Label>
+                        <Select 
+                          value={newService.service_type}
+                          onValueChange={(value) => setNewService({...newService, service_type: value})}
+                          required
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select service type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Spiritual">Spiritual Guide</SelectItem>
+                            <SelectItem value="Pilgrimage">Pilgrimage Package</SelectItem>
+                            <SelectItem value="Wellness">Wellness & Yoga</SelectItem>
+                            <SelectItem value="Transport">Transportation</SelectItem>
+                            <SelectItem value="Accommodation">Accommodation</SelectItem>
+                            <SelectItem value="Cultural">Cultural Tour</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="serviceLocation">Location</Label>
+                        <Input
+                          id="serviceLocation"
+                          value={newService.location}
+                          onChange={(e) => setNewService({...newService, location: e.target.value})}
+                          placeholder="e.g., Tirupati, Andhra Pradesh"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="serviceState">State</Label>
+                        <Select 
+                          value={newService.state}
+                          onValueChange={(value) => setNewService({...newService, state: value})}
+                          required
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select state" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
+                            <SelectItem value="Karnataka">Karnataka</SelectItem>
+                            <SelectItem value="Kerala">Kerala</SelectItem>
+                            <SelectItem value="Tamil Nadu">Tamil Nadu</SelectItem>
+                            <SelectItem value="Maharashtra">Maharashtra</SelectItem>
+                            <SelectItem value="Gujarat">Gujarat</SelectItem>
+                            <SelectItem value="Rajasthan">Rajasthan</SelectItem>
+                            <SelectItem value="Uttar Pradesh">Uttar Pradesh</SelectItem>
+                            <SelectItem value="Uttarakhand">Uttarakhand</SelectItem>
+                            <SelectItem value="Himachal Pradesh">Himachal Pradesh</SelectItem>
+                            <SelectItem value="Delhi">Delhi</SelectItem>
+                            <SelectItem value="West Bengal">West Bengal</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="servicePrice">Price per Day (₹)</Label>
+                        <Input
+                          id="servicePrice"
+                          type="number"
+                          value={newService.price_per_day}
+                          onChange={(e) => setNewService({...newService, price_per_day: e.target.value})}
+                          placeholder="e.g., 500"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="serviceDescription">Description</Label>
+                        <Textarea
+                          id="serviceDescription"
+                          value={newService.description}
+                          onChange={(e) => setNewService({...newService, description: e.target.value})}
+                          placeholder="Describe your service in detail..."
+                          rows={3}
+                        />
+                      </div>
+                      <Button type="submit" className="w-full">
+                        Add Service
+                      </Button>
+                    </form>
+                  </ScrollArea>
                 </DialogContent>
               </Dialog>
             </div>
