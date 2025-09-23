@@ -140,13 +140,13 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
 
           <TabsContent value="signup" className="p-0">
             <Card className="border-0 shadow-none">
-              <CardHeader className="space-y-1 pb-4 bg-gradient-to-r from-primary/5 to-accent/5">
+              <CardHeader className="space-y-1 pb-4 bg-gradient-to-r from-spiritual/5 to-primary/5">
                 <CardTitle className="text-2xl text-center flex items-center justify-center gap-2">
-                  <Building className="w-6 h-6 text-primary" />
+                  <Building className="w-6 h-6 text-spiritual" />
                   Begin Your Business Journey
                 </CardTitle>
                 <CardDescription className="text-center">
-                  Start offering services to pilgrims and travelers across India
+                  Discover spiritual destinations and authentic travel experiences
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 p-6">
@@ -239,7 +239,7 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
                     />
                   </div>
                   
-                  <div className="bg-primary/10 p-4 rounded-lg border border-primary/20 mb-4">
+                  <div className="bg-spiritual/10 p-4 rounded-lg border border-spiritual/20 mb-4">
                     <p className="text-xs text-muted-foreground">
                       <strong>🏢 Provider Benefits:</strong> List your services, manage bookings, 
                       connect with travelers, and grow your business with our trusted platform.
@@ -249,7 +249,7 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
                   <Button 
                     type="submit"
                     className="w-full mt-6 mb-4" 
-                    variant="hero"
+                    variant="spiritual"
                     size="lg"
                     disabled={loading}
                   >
