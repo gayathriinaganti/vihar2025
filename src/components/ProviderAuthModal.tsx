@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UserPlus, LogIn, Building } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 
 interface ProviderAuthModalProps {
@@ -35,12 +36,27 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
   });
   
   const { signUp, signIn, loading } = useAuth();
+  const { toast } = useToast();
   const navigate = useNavigate();
   
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (signupData.password !== signupData.confirmPassword) {
+      toast({
+        variant: "destructive",
+        title: "Password Mismatch",
+        description: "Please make sure both passwords match.",
+      });
+      return;
+    }
+
+    if (signupData.password.length < 6) {
+      toast({
+        variant: "destructive", 
+        title: "Password Too Short",
+        description: "Password must be at least 6 characters long.",
+      });
       return;
     }
     
@@ -54,7 +70,17 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
     if (!error) {
       setIsOpen(false);
       setSignupData({ businessName: "", contactPerson: "", email: "", state: "", password: "", confirmPassword: "" });
+      toast({
+        title: "Account Created!",
+        description: "Welcome to Vihar! Your provider account has been created successfully.",
+      });
       navigate('/provider-dashboard');
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Registration Failed",
+        description: error.message || "Something went wrong. Please try again.",
+      });
     }
   };
   
