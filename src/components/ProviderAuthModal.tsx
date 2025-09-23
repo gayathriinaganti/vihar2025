@@ -72,10 +72,9 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
       setSignupData({ businessName: "", contactPerson: "", email: "", state: "", password: "", confirmPassword: "" });
       toast({
         title: "Account Created!",
-        description: "Please check your email and confirm your account before logging in.",
+        description: "Welcome to Vihar! Your provider account has been created successfully.",
       });
-      // Switch to login so the next step is clear
-      setActiveTab("login");
+      navigate('/provider-dashboard');
     } else {
       toast({
         variant: "destructive",
