@@ -92,7 +92,17 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
     if (!error) {
       setIsOpen(false);
       setLoginData({ email: "", password: "" });
+      toast({
+        title: "Welcome back!",
+        description: "Successfully signed in to your provider dashboard.",
+      });
       navigate('/provider-dashboard');
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Login Failed",
+        description: error.message || "Invalid credentials. Please try again.",
+      });
     }
   };
 
