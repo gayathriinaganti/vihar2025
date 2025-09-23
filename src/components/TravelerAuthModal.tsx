@@ -184,6 +184,25 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
                       </SelectTrigger>
                       <SelectContent className="z-[100]" position="popper" sideOffset={4}>
                         <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
+                        <SelectItem value="Karnataka">Karnataka</SelectItem>
+                        <SelectItem value="Kerala">Kerala</SelectItem>
+                        <SelectItem value="Tamil Nadu">Tamil Nadu</SelectItem>
+                        <SelectItem value="Maharashtra">Maharashtra</SelectItem>
+                        <SelectItem value="Gujarat">Gujarat</SelectItem>
+                        <SelectItem value="Rajasthan">Rajasthan</SelectItem>
+                        <SelectItem value="Uttar Pradesh">Uttar Pradesh</SelectItem>
+                        <SelectItem value="Uttarakhand">Uttarakhand</SelectItem>
+                        <SelectItem value="Himachal Pradesh">Himachal Pradesh</SelectItem>
+                        <SelectItem value="Delhi">Delhi</SelectItem>
+                        <SelectItem value="West Bengal">West Bengal</SelectItem>
+                        <SelectItem value="Odisha">Odisha</SelectItem>
+                        <SelectItem value="Madhya Pradesh">Madhya Pradesh</SelectItem>
+                        <SelectItem value="Bihar">Bihar</SelectItem>
+                        <SelectItem value="Jharkhand">Jharkhand</SelectItem>
+                        <SelectItem value="Assam">Assam</SelectItem>
+                        <SelectItem value="Punjab">Punjab</SelectItem>
+                        <SelectItem value="Haryana">Haryana</SelectItem>
+                        <SelectItem value="Jammu & Kashmir">Jammu & Kashmir</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
