@@ -20,9 +20,11 @@ const AuthPage = () => {
     );
   }
 
-  // Redirect authenticated users to home
+  // Redirect authenticated users to their appropriate dashboard
   if (user) {
-    return <Navigate to="/home" replace />;
+    const userRole = user.user_metadata?.user_role;
+    const redirectTo = userRole === 'provider' ? '/provider-dashboard' : '/traveler-dashboard';
+    return <Navigate to={redirectTo} replace />;
   }
 
   return (
