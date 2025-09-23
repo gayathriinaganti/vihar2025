@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UserPlus, LogIn, Building } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
@@ -86,6 +86,10 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
         {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px] p-0">
+        <DialogTitle className="sr-only">Provider Authentication</DialogTitle>
+        <DialogDescription className="sr-only">
+          Register as a service provider or login to your existing provider account
+        </DialogDescription>
         <Tabs value={activeTab} onValueChange={(value: "signup" | "login") => setActiveTab(value)} className="w-full">
           <TabsList className="grid w-full grid-cols-2 rounded-none">
             <TabsTrigger value="signup" className="flex items-center gap-2">
@@ -147,11 +151,12 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
                     <Select 
                       value={signupData.state} 
                       onValueChange={(value) => setSignupData({...signupData, state: value})}
+                      required
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select your state" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[100]" position="popper" sideOffset={4}>
                         <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
                       </SelectContent>
                     </Select>

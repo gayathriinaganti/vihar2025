@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UserPlus, LogIn, User, Heart } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
@@ -112,6 +112,10 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
         {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto p-0">
+        <DialogTitle className="sr-only">Traveler Authentication</DialogTitle>
+        <DialogDescription className="sr-only">
+          Join as a traveler or login to your existing traveler account
+        </DialogDescription>
         <Tabs value={activeTab} onValueChange={(value: "signup" | "login") => setActiveTab(value)} className="w-full">
           <TabsList className="grid w-full grid-cols-2 rounded-none">
             <TabsTrigger value="signup" className="flex items-center gap-2">
@@ -173,11 +177,12 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
                     <Select 
                       value={signupData.state} 
                       onValueChange={(value) => setSignupData({...signupData, state: value})}
+                      required
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select your state" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[100]" position="popper" sideOffset={4}>
                         <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
                       </SelectContent>
                     </Select>
