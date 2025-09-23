@@ -121,7 +121,7 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
       >
         {children}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] p-0">
+      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto p-0">
         <DialogTitle className="sr-only">Provider Authentication</DialogTitle>
         <DialogDescription className="sr-only">
           Register as a service provider or login to your existing provider account
