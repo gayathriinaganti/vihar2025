@@ -64,6 +64,53 @@ export type Database = {
           },
         ]
       }
+      places: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          location: string | null
+          name: string
+          place_type: string
+          rating: number | null
+          state_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          location?: string | null
+          name: string
+          place_type: string
+          rating?: number | null
+          state_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          location?: string | null
+          name?: string
+          place_type?: string
+          rating?: number | null
+          state_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "places_state_id_fkey"
+            columns: ["state_id"]
+            isOneToOne: false
+            referencedRelation: "states"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -71,6 +118,7 @@ export type Database = {
           display_name: string | null
           id: string
           role: string | null
+          state: string | null
           updated_at: string
           user_id: string
         }
@@ -80,6 +128,7 @@ export type Database = {
           display_name?: string | null
           id?: string
           role?: string | null
+          state?: string | null
           updated_at?: string
           user_id: string
         }
@@ -89,6 +138,7 @@ export type Database = {
           display_name?: string | null
           id?: string
           role?: string | null
+          state?: string | null
           updated_at?: string
           user_id?: string
         }
@@ -154,6 +204,30 @@ export type Database = {
           user_id?: string | null
           verification_status?: string | null
           website_url?: string | null
+        }
+        Relationships: []
+      }
+      states: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string
         }
         Relationships: []
       }

@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UserPlus, LogIn, User, Heart } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,7 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
     fullName: "",
     email: "",
     phone: "",
+    state: "",
     password: "",
     confirmPassword: ""
   });
@@ -61,12 +63,13 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
     const { error } = await signUp(signupData.email, signupData.password, {
       display_name: signupData.fullName,
       phone: signupData.phone,
+      state: signupData.state,
       user_role: "traveler"
     });
     
     if (!error) {
       setIsOpen(false);
-      setSignupData({ fullName: "", email: "", phone: "", password: "", confirmPassword: "" });
+      setSignupData({ fullName: "", email: "", phone: "", state: "", password: "", confirmPassword: "" });
       toast({
         title: "Account Created!",
         description: "Welcome to Vihar! Your traveler account has been created successfully.",
@@ -164,6 +167,20 @@ const TravelerAuthModal = ({ children }: TravelerAuthModalProps) => {
                       value={signupData.phone}
                       onChange={(e) => setSignupData({...signupData, phone: e.target.value})}
                     />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="travelerState">State *</Label>
+                    <Select 
+                      value={signupData.state} 
+                      onValueChange={(value) => setSignupData({...signupData, state: value})}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select your state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="travelerPassword">Password *</Label>

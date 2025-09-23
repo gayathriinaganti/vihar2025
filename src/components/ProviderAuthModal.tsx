@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UserPlus, LogIn, Building } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
     businessName: "",
     contactPerson: "",
     email: "",
+    state: "",
     password: "",
     confirmPassword: ""
   });
@@ -45,12 +47,13 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
     const { error } = await signUp(signupData.email, signupData.password, {
       display_name: signupData.contactPerson,
       business_name: signupData.businessName,
+      state: signupData.state,
       user_role: "provider"
     });
     
     if (!error) {
       setIsOpen(false);
-      setSignupData({ businessName: "", contactPerson: "", email: "", password: "", confirmPassword: "" });
+      setSignupData({ businessName: "", contactPerson: "", email: "", state: "", password: "", confirmPassword: "" });
       navigate('/provider-dashboard');
     }
   };
@@ -138,6 +141,20 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
                       onChange={(e) => setSignupData({...signupData, email: e.target.value})}
                       required
                     />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="providerState">State *</Label>
+                    <Select 
+                      value={signupData.state} 
+                      onValueChange={(value) => setSignupData({...signupData, state: value})}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select your state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="providerPassword">Password *</Label>
