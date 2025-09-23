@@ -143,10 +143,10 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
               <CardHeader className="space-y-1 pb-4 bg-gradient-to-r from-primary/5 to-accent/5">
                 <CardTitle className="text-2xl text-center flex items-center justify-center gap-2">
                   <Building className="w-6 h-6 text-primary" />
-                  Join as Service Provider
+                  Begin Your Business Journey
                 </CardTitle>
                 <CardDescription className="text-center">
-                  Start offering your services to pilgrims and travelers
+                  Start offering services to pilgrims and travelers across India
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 p-6">
@@ -155,7 +155,7 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
                     <Label htmlFor="businessName">Business Name *</Label>
                     <Input 
                       id="businessName" 
-                      placeholder="e.g., Kedarnath Travel Services"
+                      placeholder="Enter your business name"
                       value={signupData.businessName}
                       onChange={(e) => setSignupData({...signupData, businessName: e.target.value})}
                       required
@@ -165,7 +165,7 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
                     <Label htmlFor="contactPerson">Contact Person *</Label>
                     <Input 
                       id="contactPerson" 
-                      placeholder="Your full name"
+                      placeholder="Enter your full name"
                       value={signupData.contactPerson}
                       onChange={(e) => setSignupData({...signupData, contactPerson: e.target.value})}
                       required
@@ -176,7 +176,7 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
                     <Input 
                       id="providerEmail" 
                       type="email" 
-                      placeholder="business@example.com"
+                      placeholder="your.email@example.com"
                       value={signupData.email}
                       onChange={(e) => setSignupData({...signupData, email: e.target.value})}
                       required
@@ -221,7 +221,7 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
                     <Input 
                       id="providerPassword" 
                       type="password" 
-                      placeholder="Create a strong password"
+                      placeholder="Create a secure password"
                       value={signupData.password}
                       onChange={(e) => setSignupData({...signupData, password: e.target.value})}
                       required
@@ -239,21 +239,21 @@ const ProviderAuthModal = ({ children }: ProviderAuthModalProps) => {
                     />
                   </div>
                   
-                  <div className="bg-muted/30 p-4 rounded-lg">
+                  <div className="bg-primary/10 p-4 rounded-lg border border-primary/20 mb-4">
                     <p className="text-xs text-muted-foreground">
-                      <strong>Provider Benefits:</strong> List your services, manage bookings, 
+                      <strong>🏢 Provider Benefits:</strong> List your services, manage bookings, 
                       connect with travelers, and grow your business with our trusted platform.
                     </p>
                   </div>
 
                   <Button 
                     type="submit"
-                    className="w-full" 
+                    className="w-full mt-6 mb-4" 
                     variant="hero"
                     size="lg"
                     disabled={loading}
                   >
-                    {loading ? "Creating Provider Account..." : "Register as Provider"}
+                    {loading ? "Creating Provider Account..." : "Start Your Business"}
                   </Button>
                 </form>
               </CardContent>
