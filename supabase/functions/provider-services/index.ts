@@ -73,7 +73,11 @@ serve(async (req) => {
 
       case 'POST':
         // Create new service
-        const newServiceData = await req.json();
+        const body = await req.text();
+        if (!body) {
+          throw new Error('Request body is required');
+        }
+        const newServiceData = JSON.parse(body);
         const { data: newService, error: createError } = await supabase
           .from('services')
           .insert([{
@@ -101,7 +105,11 @@ serve(async (req) => {
           throw new Error('Service ID is required for updates');
         }
 
-        const updateData = await req.json();
+        const updateBody = await req.text();
+        if (!updateBody) {
+          throw new Error('Request body is required');
+        }
+        const updateData = JSON.parse(updateBody);
         const { data: updatedService, error: updateError } = await supabase
           .from('services')
           .update(updateData)
