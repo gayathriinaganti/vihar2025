@@ -14,6 +14,74 @@ export type Database = {
   }
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          booking_date: string
+          booking_status: string | null
+          contact_email: string | null
+          contact_phone: string | null
+          created_at: string
+          currency: string | null
+          end_date: string
+          group_size: number
+          id: string
+          payment_status: string | null
+          provider_id: string
+          service_id: string
+          special_requests: string | null
+          start_date: string
+          total_amount: number
+          traveler_id: string
+          updated_at: string
+        }
+        Insert: {
+          booking_date: string
+          booking_status?: string | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          currency?: string | null
+          end_date: string
+          group_size?: number
+          id?: string
+          payment_status?: string | null
+          provider_id: string
+          service_id: string
+          special_requests?: string | null
+          start_date: string
+          total_amount: number
+          traveler_id: string
+          updated_at?: string
+        }
+        Update: {
+          booking_date?: string
+          booking_status?: string | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          currency?: string | null
+          end_date?: string
+          group_size?: number
+          id?: string
+          payment_status?: string | null
+          provider_id?: string
+          service_id?: string
+          special_requests?: string | null
+          start_date?: string
+          total_amount?: number
+          traveler_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_bookings_service"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       feedback: {
         Row: {
           comment: string
@@ -204,6 +272,69 @@ export type Database = {
           user_id?: string | null
           verification_status?: string | null
           website_url?: string | null
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          approval_status: string | null
+          availability_status: string | null
+          created_at: string
+          description: string | null
+          duration_days: number | null
+          excludes: string[] | null
+          id: string
+          image_urls: string[] | null
+          includes: string[] | null
+          location: string
+          max_group_size: number | null
+          name: string
+          price_currency: string | null
+          price_per_day: number | null
+          provider_id: string
+          service_type: string
+          state: string
+          updated_at: string
+        }
+        Insert: {
+          approval_status?: string | null
+          availability_status?: string | null
+          created_at?: string
+          description?: string | null
+          duration_days?: number | null
+          excludes?: string[] | null
+          id?: string
+          image_urls?: string[] | null
+          includes?: string[] | null
+          location: string
+          max_group_size?: number | null
+          name: string
+          price_currency?: string | null
+          price_per_day?: number | null
+          provider_id: string
+          service_type: string
+          state: string
+          updated_at?: string
+        }
+        Update: {
+          approval_status?: string | null
+          availability_status?: string | null
+          created_at?: string
+          description?: string | null
+          duration_days?: number | null
+          excludes?: string[] | null
+          id?: string
+          image_urls?: string[] | null
+          includes?: string[] | null
+          location?: string
+          max_group_size?: number | null
+          name?: string
+          price_currency?: string | null
+          price_per_day?: number | null
+          provider_id?: string
+          service_type?: string
+          state?: string
+          updated_at?: string
         }
         Relationships: []
       }
