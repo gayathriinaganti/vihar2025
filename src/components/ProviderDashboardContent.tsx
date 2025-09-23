@@ -20,10 +20,13 @@ import {
   Settings,
   Edit,
   Trash2,
-  DollarSign
+  DollarSign,
+  LogOut,
+  ArrowLeft
 } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 interface Service {
   id: string;
@@ -36,7 +39,8 @@ interface Service {
 }
 
 const ProviderDashboardContent = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const [services, setServices] = useState<Service[]>([
     { 
       id: '1', 
@@ -96,6 +100,11 @@ const ProviderDashboardContent = () => {
     setServices(services.filter(service => service.id !== id));
   };
 
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/30">
       <div className="container mx-auto p-6 space-y-8">
@@ -111,9 +120,17 @@ const ProviderDashboardContent = () => {
               </p>
             </div>
             <div className="flex gap-3">
+              <Button variant="outline" size="sm" onClick={() => navigate('/')}>
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Home
+              </Button>
               <Button variant="outline" size="sm">
                 <Settings className="w-4 h-4 mr-2" />
                 Settings
+              </Button>
+              <Button variant="destructive" size="sm" onClick={handleLogout}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
               </Button>
               <Dialog open={isAddingService} onOpenChange={setIsAddingService}>
                 <DialogTrigger asChild>

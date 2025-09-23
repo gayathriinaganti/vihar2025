@@ -16,10 +16,13 @@ import {
   Navigation,
   Clock,
   Users,
-  DollarSign
+  DollarSign,
+  LogOut,
+  ArrowLeft
 } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 interface Destination {
   id: string;
@@ -42,7 +45,8 @@ interface Trip {
 }
 
 const TravelerDashboardContent = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'spiritual' | 'tourist'>('all');
   
@@ -106,6 +110,11 @@ const TravelerDashboardContent = () => {
     return matchesSearch && matchesFilter;
   });
 
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
       <div className="container mx-auto p-6 space-y-8">
@@ -121,6 +130,10 @@ const TravelerDashboardContent = () => {
               </p>
             </div>
             <div className="flex items-center gap-3">
+              <Button variant="outline" size="sm" onClick={() => navigate('/')}>
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Home
+              </Button>
               <Button variant="spiritual" size="sm" className="shadow-lg">
                 <Heart className="w-4 h-4 mr-2" />
                 Wishlist ({destinations.filter(d => d.isFavorite).length})
@@ -128,6 +141,10 @@ const TravelerDashboardContent = () => {
               <Button variant="outline" size="sm">
                 <Navigation className="w-4 h-4 mr-2" />
                 Plan Journey
+              </Button>
+              <Button variant="destructive" size="sm" onClick={handleLogout}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
               </Button>
             </div>
           </div>
