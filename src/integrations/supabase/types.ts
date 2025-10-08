@@ -212,6 +212,59 @@ export type Database = {
         }
         Relationships: []
       }
+      provider_documents: {
+        Row: {
+          created_at: string
+          document_type: string
+          file_name: string
+          file_size: number | null
+          file_url: string
+          id: string
+          provider_id: string
+          rejection_reason: string | null
+          updated_at: string
+          uploaded_at: string
+          verification_status: string | null
+          verified_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_type: string
+          file_name: string
+          file_size?: number | null
+          file_url: string
+          id?: string
+          provider_id: string
+          rejection_reason?: string | null
+          updated_at?: string
+          uploaded_at?: string
+          verification_status?: string | null
+          verified_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_type?: string
+          file_name?: string
+          file_size?: number | null
+          file_url?: string
+          id?: string
+          provider_id?: string
+          rejection_reason?: string | null
+          updated_at?: string
+          uploaded_at?: string
+          verification_status?: string | null
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "provider_documents_provider_id_fkey"
+            columns: ["provider_id"]
+            isOneToOne: false
+            referencedRelation: "providers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       providers: {
         Row: {
           address: string
